@@ -22,11 +22,7 @@ public class SMTPWorker extends Threaded {
     void setQuitTrue() {quit = true;}
 
     public SMTPWorker(Socket client) {
-        try {
-            smtp = new SMTP();
-        } catch (SMTPException e) {
-            setQuitTrue();
-        }
+        smtp = new SMTP();
         clientPacketSerializator = new Serializator<ClientPacket>();
         clientPacketSerializator.register(new IntSerializator());
         clientPacketSerializator.register(new StringSerializator());
@@ -51,6 +47,7 @@ public class SMTPWorker extends Threaded {
         serverPacket.exception = false;
         if(clientPacket.type.equals("Login")) {
             try{
+                smtp.Connect(clientPacket.login.split("@")[1]);
                 smtp.Login(clientPacket.login, clientPacket.password);
             }
             catch (SMTPException e){
@@ -136,7 +133,6 @@ public class SMTPWorker extends Threaded {
                     in.close();
                 }
                 client.close();
-                System.out.println("close");
             } catch (IOException e){ e.printStackTrace(); }
         }
     }

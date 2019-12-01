@@ -56,7 +56,6 @@ public class Client {
         } catch (IOException | DeserializeException e) {
             e.printStackTrace();
         }
-        System.out.println(response.exception);
         return response;
     }
 
@@ -125,7 +124,6 @@ public class Client {
         packet.type = "Quit";
         byte[] pack = clientPacketSerializator.Serialize(packet);
         try {
-            System.out.println(pack.length);
             dos.writeInt(pack.length);
             bos.write(pack);
             bos.flush();

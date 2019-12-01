@@ -17,15 +17,18 @@ public class SMTP {
     private Base64.Encoder encoder;
     private EmailMaker em;
 
-    public SMTP() throws SMTPException {
-        String data = null;
+    public SMTP(){
         encoder = Base64.getEncoder();
         em = new EmailMaker(encoder);
+    }
+
+    public void Connect(String domain) throws SMTPException {
+        String data = null;
         SSLSocketFactory sslsocketfactory = (SSLSocketFactory) SSLSocketFactory
                 .getDefault();
         try {
             sock = (SSLSocket) sslsocketfactory.createSocket(
-                    "smtp.yandex.ru", 465);
+                    String.format("smtp.%s", domain), 465);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -57,7 +60,6 @@ public class SMTP {
         sb.append(data);
         sb.append('\n');
         data = sb.toString();
-        System.out.println(data);
         return data;
     }
     private String SendData(byte[] data) throws IOException {
@@ -68,7 +70,6 @@ public class SMTP {
     }
 
     private String SendData(String data) throws IOException {
-        System.out.println(data);
         return SendData(data.getBytes());
     }
     public void Login(String login, String password) throws SMTPException {
