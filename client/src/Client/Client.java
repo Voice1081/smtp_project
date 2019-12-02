@@ -44,12 +44,10 @@ public class Client {
         packet.password = password;
         byte[] pack = clientPacketSerializator.Serialize(packet);
         try {
-            System.out.println(pack.length);
             dos.writeInt(pack.length);
             bos.write(pack);
             bos.flush();
             int len = in.readInt();
-            System.out.println(len);
             byte[] resp = new byte[len];
             in.readFully(resp);
             response = serverPacketSerializator.Deserialize(resp);

@@ -71,7 +71,6 @@ public class SMTP {
     }
 
     private String SendData(String data) throws IOException {
-        System.out.println(data);
         return SendData(data.getBytes());
     }
     public void Login(String login, String password) throws SMTPException {

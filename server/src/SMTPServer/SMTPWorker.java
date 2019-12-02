@@ -115,7 +115,6 @@ public class SMTPWorker extends Threaded {
                         quit = true;
                     }
                     ServerPacket serverPacket = handleRequest(clientPacket);
-                    System.out.println(serverPacket.exception);
                     if(!quit) {
                         byte[] response = serverPacketSerializator.Serialize(serverPacket);
                         out.writeInt(response.length);
