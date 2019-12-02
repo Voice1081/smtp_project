@@ -43,7 +43,6 @@ public class Server {
         try {
             while (true) {
                 Socket client = server.accept();
-                System.out.println("new client");
                 SMTPWorker wb = new SMTPWorker(client);
                 dispatcher.Add(wb);
             }

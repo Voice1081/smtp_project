@@ -60,7 +60,6 @@ public class SMTP {
         sb.append(data);
         sb.append('\n');
         data = sb.toString();
-        System.out.println(data);
         return data;
     }
     private String SendData(byte[] data) throws IOException {
@@ -118,7 +117,7 @@ public class SMTP {
         IndicateReceivers(receivers);
         String data = null;
         String email = null;
-        if(attachments.length == 0) email = em.MakeEmail(text, sender, sender, receivers, theme);
+        if(attachments == null) email = em.MakeEmail(text, sender, sender, receivers, theme);
         else email = em.MakeMultipleEmail(text, sender, sender, receivers, attachments, theme);
         try {
             SendData("DATA");
