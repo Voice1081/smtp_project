@@ -60,6 +60,7 @@ public class SMTP {
         sb.append(data);
         sb.append('\n');
         data = sb.toString();
+        System.out.println(data);
         return data;
     }
     private String SendData(byte[] data) throws IOException {
@@ -70,6 +71,7 @@ public class SMTP {
     }
 
     private String SendData(String data) throws IOException {
+        System.out.println(data);
         return SendData(data.getBytes());
     }
     public void Login(String login, String password) throws SMTPException {

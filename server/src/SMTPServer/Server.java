@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Server {
 
     private final ServerSocket server;
-    final ThreadDispatcher dispatcher;
+    public final ThreadDispatcher dispatcher;
 
     public Server(int port) {
         dispatcher = ThreadDispatcher.getInstance();

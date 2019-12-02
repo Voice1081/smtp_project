@@ -49,7 +49,7 @@ public class EmailMaker {
         String content = String.format("Content-Type: %s; name=\"%s\"\r\n", contType, name);
         String charset = "Content-Transfer-Encoding: base64\r\n";
         String encoded = encoder.encodeToString(att);
-        return beg + content + charset + encoded + "\r\n";
+        return beg + content + charset + String.format("Content-Disposition: attachment; filename=\"%s\"\r\n\r\n", name) + encoded + "\r\n";
     }
 
     private String getMime(byte[] file){

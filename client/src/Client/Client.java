@@ -96,12 +96,14 @@ public class Client {
                 dos.writeInt(Arrays.hashCode(archive));
             } else {
                 for (String att: attachments) {
+                    String[] att1 = att.split("\\\\");
+                    String attName = att1[att1.length - 1];
                     File file = new File(att);
                     byte[] fileBytes = Files.readAllBytes(file.toPath());
                     dos.writeInt(fileBytes.length);
                     bos.write(fileBytes);
                     bos.flush();
-                    dos.writeUTF(att);
+                    dos.writeUTF(attName);
                     dos.writeInt(Arrays.hashCode(fileBytes));
                 }
             }
